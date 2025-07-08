@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)" # cd into script dir, then captures pwd as str
 SSHLOG_DIR="$SCRIPT_DIR/Server-Records/"
+declare SELECTED_RECORD
+declare -a SERVER_ARR
+
 main() {
     PS3="Choose an option: "
     options=("List available servers" "Connect to server" "Generate new interface record" "Exit")
@@ -15,13 +18,15 @@ main() {
             2) clear
                echo "Select a server..."
                SELECTED_RECORD="$(./sshlog_selector.sh $SSHLOG_DIR)"
-               echo "Filepath found $SELECTED_RECORD"
-               [ -f $SELECTED_RECORD ] && echo "file found"
+               echo "Filepath found: $SELECTED_RECORD"
+               [ -f $SELECTED_RECORD ] && echo "file confirmed"
+               read -p "hit enter to continue"
+               clear
                echo "started choose_ip.sh"
-
-               mapfile -t user_ip < <(./choose_ip.sh "$SELECTED_RECORD") 
-               echo "${user_ip[1]}"
-               sleep 3 
+               mapfile -t SERVER_ARR < <(./choose_ip.sh "$SELECTED_RECORD") 
+               echo "printing results"
+               echo "${SERVER_ARR[@]}"
+               read -p "hit enter to continue"
                clear
                ;;
             3) echo "Generating new record..."

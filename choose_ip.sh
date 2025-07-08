@@ -6,10 +6,11 @@ choose_ip() {
     
     # Get username from first line
     username=$(sed -n '1p' "$file")
-    echo "$username" >&2
+    #echo "$username" >&2
     # Show the file (skip first line - username)
-    tail -n +2 "$file" >&2 
-    
+    echo "Available Interfaces:" >&2
+    tail -n +2 "$file" | nl >&2 
+    echo "..." >&2 
     # Get user choice
     echo -n "Choose line number: " >&2
     read -r line_number
@@ -19,7 +20,7 @@ choose_ip() {
     # sed extracts the specific line number, cut splits on space and takes field 2 (the IP)
     
     echo "Selected: $username@$ip" >&2
-    
+    echo "Sending data back, choose_ip done" >&2 
     # Export for use elsewhere
     echo "$username"
     echo "$ip"
