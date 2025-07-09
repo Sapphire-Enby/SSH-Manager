@@ -28,9 +28,12 @@ main() {
                echo "${SERVER_ARR[@]}"
                read -p "hit enter to continue"
                clear
+               echo "connecting to server"
+               $(ssh ${SERVER_ARR[0]}@${SERVER_ARR[1]})
+               clear
                ;;
             3) echo "Generating new record..."
-               # Run get_interfaces.sh
+              $(./recorder.sh)
                ;;
             4) echo "Goodbye!"
                exit 0

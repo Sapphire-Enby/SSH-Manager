@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 whoami
 ip addr show | awk '
