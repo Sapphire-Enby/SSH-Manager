@@ -1,2 +1,22 @@
-/Outdated-Versions
-/Server-Records/*
+# SSH Manager - Git Ignore
+
+# Ignore personal server records - contains sensitive IP addresses and usernames
+Server-Records/
+Server-Records/*
+*.sshlog
+
+# Ignore backup files
+*.backup
+*.bak
+*~
+
+# Ignore temporary files
+.DS_Store
+Thumbs.db
+
+# Ignore log files
+*.log
+
+# Ignore outdated versions
+/Outdated-Versions/
+Outdated-Versions/*
